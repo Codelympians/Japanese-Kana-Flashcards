@@ -6,9 +6,16 @@ let oldTime = 0 // Time at which the previous frame is updated
 let fpsCooldown = 0 // When fpsCooldown <= 0, set displayFPS = fps
 let displayFPS = 0 // fps displayed on screen, updated every second
 
+function sanitizeInput(value) {
+    if (!value) {
+        return ""
+    }
+    return value
+}
+
 var border = 100;
-var includeAdvancedCards = true;
-var includeKatakana = true;
+var includeAdvancedCards = (sanitizeInput(prompt("Include voiced (dakuten) hiragana? (Y/N)")).toUpperCase() === "Y");
+var includeKatakana = (sanitizeInput(prompt("Include katakana? (Y/N)")).toUpperCase() === "Y");
 
 var currentCard;
 var testingTerm = 1;
